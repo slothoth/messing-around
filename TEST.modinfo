@@ -1,13 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mod id="88437b31-15d2-48da-b71f-2f13b34e6e42" version="1">
   <Properties>
-    <Name>AAAA TESTING</Name>
+    <Name>AAAA TESTING EQUIP</Name>
     <Description>TEST BUILDING BUFF</Description>
     <Created>1588793234</Created>
-    <Teaser>Test</Teaser>
+    <Teaser>aeff</Teaser>
     <Authors>Slothoth</Authors>
+    <SpecialThanks>Just a playground</SpecialThanks>
+    <Homepage>chfaefaefeese</Homepage>
     <CompatibleVersions>1.2,2.0</CompatibleVersions>
   </Properties>
+  <Dependencies>
+    <Mod id="4873eb62-8ccc-4574-b784-dda455e74e68" title="LOC_EXPANSION2_MOD_TITLE"/>
+    <Mod id="8424840C-92EF-4426-A9B4-B4E0CB818049" title="LOC_BABYLON_MOD_TITLE" />
+  </Dependencies>
   <InGameActions>
     <UpdateDatabase id="Gameplay">
       <Properties>
@@ -15,8 +21,17 @@
       </Properties>
       <File>main.sql</File>
     </UpdateDatabase>
+    <ImportFiles id="LUA_Replacers">
+      <Properties>
+        <LoadOrder>150000</LoadOrder>
+      </Properties>
+      <File>LUA/UnitFlagManager.lua</File>
+      <File>LUA/UnitPanel.lua</File>
+    </ImportFiles>
   </InGameActions>
   <Files>
     <File>main.sql</File>
+    <File>LUA/UnitFlagManager.lua</File>
+    <File>LUA/UnitPanel.lua</File>
   </Files>
 </Mod>
