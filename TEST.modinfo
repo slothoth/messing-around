@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mod id="88437b31-15d2-48da-b71f-2f13b34e6e42" version="1">
+  <Properties>
+    <Name>AAAA TESTING</Name>
+    <Description>TEST BUILDING BUFF</Description>
+    <Created>1588793234</Created>
+    <Teaser>Test</Teaser>
+    <Authors>Slothoth</Authors>
+    <CompatibleVersions>1.2,2.0</CompatibleVersions>
+  </Properties>
+  <InGameActions>
+    <UpdateDatabase id="Gameplay">
+      <Properties>
+        <LoadOrder>100</LoadOrder>
+      </Properties>
+      <File>main.sql</File>
+    </UpdateDatabase>
+  </InGameActions>
+  <Files>
+    <File>main.sql</File>
+  </Files>
+</Mod>
