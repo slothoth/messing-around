@@ -7,7 +7,6 @@
     <Teaser>aeff</Teaser>
     <Authors>Slothoth</Authors>
     <SpecialThanks>Just a playground</SpecialThanks>
-    <Homepage>chfaefaefeese</Homepage>
     <CompatibleVersions>1.2,2.0</CompatibleVersions>
   </Properties>
   <Dependencies>
@@ -15,23 +14,14 @@
     <Mod id="8424840C-92EF-4426-A9B4-B4E0CB818049" title="LOC_BABYLON_MOD_TITLE" />
   </Dependencies>
   <InGameActions>
-    <UpdateDatabase id="Gameplay">
-      <Properties>
-        <LoadOrder>100</LoadOrder>
-      </Properties>
-      <File>main.sql</File>
-    </UpdateDatabase>
     <ImportFiles id="LUA_Replacers">
       <Properties>
         <LoadOrder>150000</LoadOrder>
       </Properties>
-      <File>LUA/UnitFlagManager.lua</File>
-      <File>LUA/UnitPanel.lua</File>
+      <File>LUA/RazeCity_Expansion2.lua</File>
     </ImportFiles>
   </InGameActions>
   <Files>
-    <File>main.sql</File>
-    <File>LUA/UnitFlagManager.lua</File>
-    <File>LUA/UnitPanel.lua</File>
+    <File>LUA/RazeCity_Expansion2.lua</File>
   </Files>
 </Mod>
