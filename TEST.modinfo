@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mod id="88437b31-15d2-48da-b71f-2f13b34e6e42" version="1">
   <Properties>
-    <Name>AAAA DIPLO_VIS_SECRET</Name>
-    <Description>TEST BUILDING BUFF</Description>
+    <Name>AAAA TESTING</Name>
+    <Description>TEST</Description>
     <Created>1588793234</Created>
-    <Teaser>aeff</Teaser>
+    <Teaser>TEST</Teaser>
     <Authors>Slothoth</Authors>
     <CompatibleVersions>1.2,2.0</CompatibleVersions>
   </Properties>
