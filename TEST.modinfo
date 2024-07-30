@@ -8,6 +8,10 @@
     <Authors>Slothoth</Authors>
     <CompatibleVersions>1.2,2.0</CompatibleVersions>
   </Properties>
+  <Dependencies>
+    <Mod id="4873eb62-8ccc-4574-b784-dda455e74e68" title="LOC_EXPANSION2_MOD_TITLE"/>
+    <Mod id="8424840C-92EF-4426-A9B4-B4E0CB818049" title="LOC_BABYLON_MOD_TITLE" />
+  </Dependencies>
   <InGameActions>
     <UpdateDatabase id="uhh">
       <Properties>
@@ -15,13 +19,13 @@
       </Properties>
       <File>main.sql</File>
     </UpdateDatabase>
-    < ReplaceUIScript id="uh">
+    <ImportFiles id="LUA_Replacers">
       <Properties>
-        <LoadOrder>19999</LoadOrder>
-        <LuaContext>TechTree</LuaContext>
-        <LuaReplace>LUA/TechTree.lua</LuaReplace>
+        <LoadOrder>150000</LoadOrder>
       </Properties>
-    </ReplaceUIScript>
+      <File>LUA/ResearchChooser.lua</File>
+      <File>LUA/TechTree.lua</File>
+    </ImportFiles>
   </InGameActions>
   <Files>
     <File>main.sql</File>

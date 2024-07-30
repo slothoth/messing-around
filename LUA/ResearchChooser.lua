@@ -64,11 +64,11 @@ function GetData()
 
 	-- Fill in the "other" (not-current) items
 	for kTech in GameInfo.Technologies() do
-
 		local iTech	:number = kTech.Index;
+		local tDummyTechs = {['SLTH_TECH_AGRICULTURE'] = true, ["EXAMPLE"] = true};
 		if	iTech == m_currentID or
 			iTech == m_lastCompletedID or
-			(iTech ~= m_currentID and pPlayerTechs:CanResearch(iTech)) then
+			(iTech ~= m_currentID and pPlayerTechs:CanResearch(iTech) and not tDummyTechs[kTech.TechnologyType]) then
 
 			local kResearchData :table = GetResearchData( ePlayer, pPlayerTechs, kTech );
 			kResearchData.IsCurrent			= (iTech == m_currentID);
