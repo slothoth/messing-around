@@ -58,7 +58,14 @@ for city in playerCityList:
     ADJUST CITY GOLD YIELD HERE SOMEHOW
 
 
-Can we only trigger event when any city is built, city builds a maintenance building, one of, or civ changes in or out of maintenance policies?
-Other triggers would be when gov plaza buiLt/destroyed, or when capital lost.
+Can we only trigger event when any city is built
+ city builds a maintenance building,
+civ changes in or out of maintenance policies?
+gov plaza buiLt/destroyed,
+capital lost.
 Be more performant by setting existing state in setProperty?
 Also seems silly to recalculate expensive distance yields on new city founded
+
+Player	Colon (Instance)	GrantYield(yieldIndex	:number
+amount	:number)
+
