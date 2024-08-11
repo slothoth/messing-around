@@ -49,7 +49,11 @@ function RefreshYields()
 
 	---- GOLD ----
 	local playerTreasury:table	= localPlayer:GetTreasury();
-	local goldYield		:number = playerTreasury:GetGoldYield() - playerTreasury:GetTotalMaintenance();
+	local dist_maintenance = Players[localPlayerID]:GetProperty('city_distance_maintenance');
+	local num_maintenance = Players[localPlayerID]:GetProperty('city_num_maintenance');
+	if not dist_maintenance then dist_maintenance = 0; end
+	if not num_maintenance then num_maintenance = 0; end
+	local goldYield		:number = playerTreasury:GetGoldYield() - playerTreasury:GetTotalMaintenance() - num_maintenance - dist_maintenance;
 	local goldBalance	:number = math.floor(playerTreasury:GetGoldBalance());
 	Controls.GoldBalance:SetText( Locale.ToNumber(goldBalance, "#,###.#") );	
 	Controls.GoldPerTurn:SetText( FormatValuePerTurn(goldYield) );	

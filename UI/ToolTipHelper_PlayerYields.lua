@@ -13,7 +13,9 @@ function GetExtendedGoldTooltip()
 	local localPlayerID = Game.GetLocalPlayer();
 	if (localPlayerID ~= -1) then
 		local playerTreasury:table	= Players[localPlayerID]:GetTreasury();
-		szReturnValue = szReturnValue .. Locale.Lookup("LOC_TOP_PANEL_GOLD_YIELD_TOOLTIP_NET", playerTreasury:GetGoldYield() - playerTreasury:GetTotalMaintenance());
+		local dist_maintenance = Players[localPlayerID]:GetProperty('city_distance_maintenance');
+		local num_maintenance = Players[localPlayerID]:GetProperty('city_num_maintenance');
+		szReturnValue = szReturnValue .. Locale.Lookup("LOC_TOP_PANEL_GOLD_YIELD_TOOLTIP_NET", playerTreasury:GetGoldYield() - playerTreasury:GetTotalMaintenance() - dist_maintenance - num_maintenance);
 		szReturnValue = szReturnValue .. "[NEWLINE][NEWLINE]";
 		szReturnValue = szReturnValue .. Locale.Lookup("LOC_TOP_PANEL_GOLD_YIELD_TOOLTIP_GROSS", playerTreasury:GetGoldYield());
 		szReturnValue = szReturnValue .. "[NEWLINE][NEWLINE]";
@@ -26,6 +28,10 @@ function GetExtendedGoldTooltip()
 		szReturnValue = szReturnValue .. Locale.Lookup("LOC_TOP_PANEL_GOLD_YIELD_TOOLTIP_COSTS_UNITS", playerTreasury:GetUnitMaintenance());
 		szReturnValue = szReturnValue .. "[NEWLINE]  ";
 		szReturnValue = szReturnValue .. Locale.Lookup("LOC_TOP_PANEL_GOLD_YIELD_TOOLTIP_COSTS_WMDS", playerTreasury:GetWMDMaintenance());
+		szReturnValue = szReturnValue .. "[NEWLINE]  ";
+		szReturnValue = szReturnValue .. Locale.Lookup("LOC_TOP_PANEL_GOLD_YIELD_TOOLTIP_COSTS_CITY_MAINTENANCE", dist_maintenance);
+		szReturnValue = szReturnValue .. "[NEWLINE]  ";
+		szReturnValue = szReturnValue .. Locale.Lookup("LOC_TOP_PANEL_GOLD_YIELD_TOOLTIP_COSTS_CITY_DISTANCE_MAINTENANCE", num_maintenance);
 		szReturnValue = szReturnValue .. "[NEWLINE]  ";
 		local inferredSiphonFundsAmount = playerTreasury:GetTotalMaintenance() - playerTreasury:GetBuildingMaintenance() - playerTreasury:GetDistrictMaintenance() - playerTreasury:GetUnitMaintenance() - playerTreasury:GetWMDMaintenance();
 		szReturnValue = szReturnValue .. Locale.Lookup("LOC_TOP_PANEL_GOLD_YIELD_TOOLTIP_COSTS_HOSTILE_SPIES", inferredSiphonFundsAmount);
@@ -44,6 +50,11 @@ function GetGoldTooltip()
 		local income_tt_details = playerTreasury:GetGoldYieldToolTip();
 		local expense_tt_details = playerTreasury:GetTotalMaintenanceToolTip();
 
+		local dist_maintenance = Players[localPlayerID]:GetProperty('city_distance_maintenance');
+		local num_maintenance = Players[localPlayerID]:GetProperty('city_num_maintenance');
+		if not dist_maintenance then dist_maintenance = 0; end
+		if not num_maintenance then num_maintenance = 0; end
+
 		szReturnValue = Locale.Lookup("LOC_TOP_PANEL_GOLD_YIELD");
 		szReturnValue = szReturnValue .. "[NEWLINE][NEWLINE]";
 		szReturnValue = szReturnValue .. Locale.Lookup("LOC_TOP_PANEL_GOLD_INCOME", playerTreasury:GetGoldYield());
@@ -52,7 +63,7 @@ function GetGoldTooltip()
 		end
 
 		szReturnValue = szReturnValue .. "[NEWLINE][NEWLINE]";
-		szReturnValue = szReturnValue .. Locale.Lookup("LOC_TOP_PANEL_GOLD_EXPENSE", -playerTreasury:GetTotalMaintenance());
+		szReturnValue = szReturnValue .. Locale.Lookup("LOC_TOP_PANEL_GOLD_EXPENSE", -playerTreasury:GetTotalMaintenance() - dist_maintenance - num_maintenance);
 		if(#expense_tt_details > 0) then
 			szReturnValue = szReturnValue .. "[NEWLINE]" .. expense_tt_details;
 		end
