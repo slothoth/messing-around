@@ -15,6 +15,8 @@ function GetExtendedGoldTooltip()
 		local playerTreasury:table	= Players[localPlayerID]:GetTreasury();
 		local dist_maintenance = Players[localPlayerID]:GetProperty('city_distance_maintenance');
 		local num_maintenance = Players[localPlayerID]:GetProperty('city_num_maintenance');
+		if not dist_maintenance then dist_maintenance = 0; end
+		if not num_maintenance then num_maintenance = 0; end
 		szReturnValue = szReturnValue .. Locale.Lookup("LOC_TOP_PANEL_GOLD_YIELD_TOOLTIP_NET", playerTreasury:GetGoldYield() - playerTreasury:GetTotalMaintenance() - dist_maintenance - num_maintenance);
 		szReturnValue = szReturnValue .. "[NEWLINE][NEWLINE]";
 		szReturnValue = szReturnValue .. Locale.Lookup("LOC_TOP_PANEL_GOLD_YIELD_TOOLTIP_GROSS", playerTreasury:GetGoldYield());

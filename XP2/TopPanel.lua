@@ -137,7 +137,13 @@ function RefreshYields()
 	if GameCapabilities.HasCapability("CAPABILITY_GOLD") and GameCapabilities.HasCapability("CAPABILITY_DISPLAY_TOP_PANEL_YIELDS") then
 		m_GoldYieldButton = m_GoldYieldButton or m_YieldButtonDoubleManager:GetInstance();
 		local playerTreasury:table	= localPlayer:GetTreasury();
-		local goldYield		:number = playerTreasury:GetGoldYield() - playerTreasury:GetTotalMaintenance();
+        local dist_maintenance = localPlayer:GetProperty('city_distance_maintenance');
+		local num_maintenance = localPlayer:GetProperty('city_num_maintenance');
+		if not dist_maintenance then dist_maintenance = 0; end
+		if not num_maintenance then num_maintenance = 0; end
+		print(dist_maintenance);
+		print(num_maintenance);
+		local goldYield		:number = playerTreasury:GetGoldYield() - playerTreasury:GetTotalMaintenance() - num_maintenance - dist_maintenance;
 		local goldBalance	:number = math.floor(playerTreasury:GetGoldBalance());
 		m_GoldYieldButton.YieldBalance:SetText( Locale.ToNumber(goldBalance, "#,###.#") );
 		m_GoldYieldButton.YieldBalance:SetColorByName("ResGoldLabelCS");

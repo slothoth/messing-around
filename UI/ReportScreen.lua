@@ -15,6 +15,7 @@ include("LeaderIcon");
 local m_debugNumResourcesStrategic	:number = 0;			-- (0) number of extra strategics to show for screen testing.
 local m_debugNumBonuses				:number = 0;			-- (0) number of extra bonuses to show for screen testing.
 local m_debugNumResourcesLuxuries	:number = 0;			-- (0) number of extra luxuries to show for screen testing.
+debug_print = False;
 
 -- ===========================================================================
 --	CONSTANTS
@@ -286,9 +287,13 @@ function GetData()
 		end
 	end
 
-
+	local dist_maintenance = player:GetProperty('city_distance_maintenance');
+	local num_maintenance = player:GetProperty('city_num_maintenance');
+	if not dist_maintenance then dist_maintenance = 0; end
+	if not num_maintenance then num_maintenance = 0; end
 
 	kCityTotalData.Expenses[YieldTypes.GOLD] = pTreasury:GetTotalMaintenance();
+	kCityTotalData.Expenses[YieldTypes.GOLD] = pTreasury:GetTotalMaintenance() + dist_maintenance + num_maintenance;
 
 	-- NET = Income - Expense
 	kCityTotalData.Net[YieldTypes.GOLD]			= kCityTotalData.Income[YieldTypes.GOLD] - kCityTotalData.Expenses[YieldTypes.GOLD];
@@ -1032,7 +1037,30 @@ function ViewYieldsPage()
 	ContextPtr:BuildInstanceForControl( "BuildingExpensesHeaderInstance", pHeader, instance.ContentStack ) ;
 
 	local iTotalBuildingMaintenance :number = 0;
+
+	local num_cities = #m_kCityData;
+	if debug_print then print(num_cities); end
+
+	local dist_maintenance = Players[Game.GetLocalPlayer()]:GetProperty('city_distance_maintenance');
+	local num_maintenance = Players[Game.GetLocalPlayer()]:GetProperty('city_num_maintenance');
+	if debug_print then print(dist_maintenance); end
+	if debug_print then print(num_maintenance); end
+	if not dist_maintenance then dist_maintenance = 0; end
+	if not num_maintenance then num_maintenance = 0; end
+
 	for i,kCityData in ipairs(m_kCityData) do
+		local dist_mult = kCityData.City:GetProperty('distance_mult');
+		local num_mult = kCityData.City:GetProperty('city_mult');
+		local distance = kCityData.City:GetProperty('distance');
+		if not dist_mult then dist_mult = 100; end;
+		if not num_mult then num_mult = 100; end;
+		if not distance then distance = 0; end;
+		if debug_print then print(dist_mult); end
+		if debug_print then print(num_mult); end
+		if debug_print then print(distance); end
+		if debug_print then print('city_tax:'); end
+		local city_tax = ((distance * dist_mult) + (num_cities * num_mult)) / 100;
+		if debug_print then print(city_tax); end
 		local cityName :string = kCityData.CityName;
 		for _,kBuilding in ipairs(kCityData.Buildings) do
 			if (kBuilding.Maintenance > 0 and kBuilding.isPillaged == false) then
@@ -1052,6 +1080,14 @@ function ViewYieldsPage()
 				pDistrictInstance.BuildingName:SetText( Locale.Lookup(kDistrict.Name) );
 				pDistrictInstance.Gold:SetText( "-"..tostring(kDistrict.Maintenance));
 				iTotalBuildingMaintenance = iTotalBuildingMaintenance - kDistrict.Maintenance;
+			end
+			if (kDistrict.Type == 'DISTRICT_CITY_CENTER' and kDistrict.isPillaged == false and kDistrict.isBuilt == true) then
+				local pDistrictInstance:table = {};
+				ContextPtr:BuildInstanceForControl( "BuildingExpensesEntryInstance", pDistrictInstance, instance.ContentStack ) ;
+				TruncateStringWithTooltip(pDistrictInstance.CityName, 224, Locale.Lookup(cityName));
+				pDistrictInstance.BuildingName:SetText( Locale.Lookup(kDistrict.Name) );
+				pDistrictInstance.Gold:SetText( "-"..tostring(city_tax));
+				iTotalBuildingMaintenance = iTotalBuildingMaintenance - city_tax;
 			end
 		end
 	end
@@ -1137,8 +1173,8 @@ function ViewYieldsPage()
 	--Gold
 	local playerTreasury:table	= localPlayer:GetTreasury();
 	Controls.GoldIncome:SetText( toPlusMinusNoneString( playerTreasury:GetGoldYield() ));
-	Controls.GoldExpense:SetText( toPlusMinusNoneString( -playerTreasury:GetTotalMaintenance() ));	-- Flip that value!
-	Controls.GoldNet:SetText( toPlusMinusNoneString( playerTreasury:GetGoldYield() - playerTreasury:GetTotalMaintenance() ));
+	Controls.GoldExpense:SetText( toPlusMinusNoneString( -playerTreasury:GetTotalMaintenance() -  dist_maintenance - num_maintenance));	-- Flip that value!
+	Controls.GoldNet:SetText( toPlusMinusNoneString( playerTreasury:GetGoldYield() - playerTreasury:GetTotalMaintenance() - dist_maintenance - num_maintenance));
 	Controls.GoldBalance:SetText( m_kCityTotalData.Treasury[YieldTypes.GOLD] );
 
 	

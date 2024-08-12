@@ -13,7 +13,7 @@ MIN_SPEC_HEIGHT = 768;
 --	RETURNS: true if screen is taller than minspec height.
 -- ===========================================================================
 function RefreshYields()
-		
+
 	-- This panel should only show at minispec
 	local screenX, screenY:number = UIManager:GetScreenSizeVal();
 	if (screenY > MIN_SPEC_HEIGHT ) then
@@ -38,7 +38,7 @@ function RefreshYields()
 	if(GameInfo.GameCapabilities["CAPABILITY_SCIENCE"] ~= nil)then
 		local playerTechnology		:table	= localPlayer:GetTechs();
 		local currentScienceYield	:number = playerTechnology:GetScienceYield();
-		Controls.SciencePerTurn:SetText( FormatValuePerTurn(currentScienceYield) );	
+		Controls.SciencePerTurn:SetText( FormatValuePerTurn(currentScienceYield) );
 
 		Controls.ScienceBacking:SetToolTipString( GetScienceTooltip() );
 		Controls.ScienceStack:CalculateSize();
@@ -55,12 +55,12 @@ function RefreshYields()
 	if not num_maintenance then num_maintenance = 0; end
 	local goldYield		:number = playerTreasury:GetGoldYield() - playerTreasury:GetTotalMaintenance() - num_maintenance - dist_maintenance;
 	local goldBalance	:number = math.floor(playerTreasury:GetGoldBalance());
-	Controls.GoldBalance:SetText( Locale.ToNumber(goldBalance, "#,###.#") );	
-	Controls.GoldPerTurn:SetText( FormatValuePerTurn(goldYield) );	
+	Controls.GoldBalance:SetText( Locale.ToNumber(goldBalance, "#,###.#") );
+	Controls.GoldPerTurn:SetText( FormatValuePerTurn(goldYield) );
 
 	Controls.GoldBacking:SetToolTipString( GetGoldTooltip() );
 
-	Controls.GoldStack:CalculateSize();	
+	Controls.GoldStack:CalculateSize();
 	Controls.GoldBacking:SetSizeX(Controls.GoldStack:GetSizeX() + YIELD_PADDING_Y);
 
 	-- Size yields in first column to match largest
@@ -71,12 +71,12 @@ function RefreshYields()
 		-- Science is wider so size Gold to match
 		Controls.GoldBacking:SetSizeX(Controls.ScienceBacking:GetSizeX());
 	end
-	
+
 	---- CULTURE----
 	if(GameInfo.GameCapabilities["CAPABILITY_CULTURE"] ~= nil)then
 		local playerCulture			:table	= localPlayer:GetCulture();
 		local currentCultureYield	:number = playerCulture:GetCultureYield();
-		Controls.CulturePerTurn:SetText( FormatValuePerTurn(currentCultureYield) );	
+		Controls.CulturePerTurn:SetText( FormatValuePerTurn(currentCultureYield) );
 
 		Controls.CultureBacking:SetToolTipString( GetCultureTooltip() );
 		Controls.CultureStack:CalculateSize();
@@ -90,12 +90,12 @@ function RefreshYields()
 		local playerReligion		:table	= localPlayer:GetReligion();
 		local faithYield			:number = playerReligion:GetFaithYield();
 		local faithBalance			:number = playerReligion:GetFaithBalance();
-		Controls.FaithBalance:SetText( Locale.ToNumber(faithBalance, "#,###.#") );	
+		Controls.FaithBalance:SetText( Locale.ToNumber(faithBalance, "#,###.#") );
 		Controls.FaithPerTurn:SetText( FormatValuePerTurn(faithYield) );
 
 		Controls.FaithBacking:SetToolTipString( GetFaithTooltip() );
 
-		Controls.FaithStack:CalculateSize();	
+		Controls.FaithStack:CalculateSize();
 		Controls.FaithBacking:SetSizeX(Controls.FaithStack:GetSizeX() + YIELD_PADDING_Y);
 	else
 		Controls.FaithBacking:SetHide(true);

@@ -25,11 +25,14 @@
       </Properties>
       <File>main.sql</File>
     </UpdateDatabase>
-      <AddGameplayScripts id="Maintenance_Gameplay">
-          <Properties>
-              <LoadOrder>350</LoadOrder>
-          </Properties>
-          <File>LUA/Gameplay_Maintenance.lua</File>
+    <UpdateText id="Text">
+      <File>localised_text.sql</File>
+    </UpdateText>
+    <AddGameplayScripts id="Maintenance_Gameplay">
+      <Properties>
+        <LoadOrder>350</LoadOrder>
+      </Properties>
+      <File>LUA/Gameplay_Maintenance.lua</File>
 	</AddGameplayScripts>
     <ImportFiles id="LUA_Replacers">
       <Properties>
@@ -37,7 +40,8 @@
       </Properties>
       <File>UI/ToolTipHelper_PlayerYields.lua</File>
       <File>UI/TopPanel.lua</File>
-      <File>XP2/TopPanel_Expansion2.lua</File>
+      <File>UI/ReportScreen.lua</File>
+      <File>UI/ModalScreen_PlayerYieldsHelper.lua</File>
     </ImportFiles>
     <ImportFiles id="LUA_Replacers_XP2" criteria="Expansion2">
       <Properties>
@@ -52,14 +56,16 @@
 		</Properties>
 		<File>LUA/UI_Maintenance.xml</File>
 	</AddUserInterfaces-->
-
   </InGameActions>
   <Files>
+    <File>LUA/Gameplay_Maintenance.lua</File>
+    <File>LUA/UI_Maintenance.xml</File>
+    <File>UI/ToolTipHelper_PlayerYields.lua</File>
+    <File>UI/TopPanel.lua</File>
+    <File>XP2/TopPanel.lua</File>
+    <File>UI/ReportScreen.lua</File>
+    <File>UI/ModalScreen_PlayerYieldsHelper.lua</File>
+    <File>localised_text.sql</File>
     <File>main.sql</File>
-      <File>LUA/Gameplay_Maintenance.lua</File>
-      <File>LUA/UI_Maintenance.xml</File>
-      <File>UI/ToolTipHelper_PlayerYields.lua</File>
-      <File>UI/TopPanel.lua</File>
-      <File>XP2/TopPanel.lua</File>
   </Files>
 </Mod>
