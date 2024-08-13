@@ -18,18 +18,18 @@
     </Criteria>
   </ActionCriteria>
   <InGameActions>
-    <UpdateDatabase id="uhh">
+    <!--UpdateDatabase id="uhh">
       <Properties>
         <LoadOrder>50</LoadOrder>
       </Properties>
       <File>main.sql</File>
-    </UpdateDatabase>
-    <!--AddGameplayScripts id="Maintenance_Gameplay">
+    </UpdateDatabase-->
+    <AddGameplayScripts id="Maintenance_Gameplay">
       <Properties>
         <LoadOrder>350</LoadOrder>
       </Properties>
       <File>LUA/Gameplay_Maintenance.lua</File>
-	</AddGameplayScripts -->
+	</AddGameplayScripts>
     <!--ImportFiles id="LUA_Replacers">
       <Properties>
         <LoadOrder>150000</LoadOrder>
@@ -45,9 +45,9 @@
 	</AddUserInterfaces-->
   </InGameActions>
   <Files>
-    <!--File>LUA/Gameplay_Maintenance.lua</File>
-    <File>LUA/UI_Maintenance.xml</File>
+    <File>LUA/Gameplay_Maintenance.lua</File>
+    <!--File>LUA/UI_Maintenance.xml</File>
     <File>UI/TopPanel.lua</File-->
-    <File>main.sql</File>
+    <!--File>main.sql</File-->
   </Files>
 </Mod>
