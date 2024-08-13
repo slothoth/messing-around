@@ -17,7 +17,6 @@
       <GameCoreInUse>Expansion2</GameCoreInUse>
     </Criteria>
   </ActionCriteria>
-
   <InGameActions>
     <UpdateDatabase id="uhh">
       <Properties>
