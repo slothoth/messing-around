@@ -11,23 +11,14 @@ function removeTest(playerID, unitID)
 end
 
 function FreePromotionFromResource(playerID, unitID)
-    print("Unit made: " .. unitID);
-    local pPlayer = Players[playerID];
-    local pUnit = pPlayer:GetUnits():FindID(unitID);
-    pUnit:GetExperience():SetPromotion(1)           -- choose relevant promotion index
+    local pPlayer = Players[playerID];  --Players[playerID]:GetResources():HasResource(12);
     local resources = pPlayer:GetResources()
-    print('Player resources table: ');
-    print(resources);
-    print('HasResources function works?:')
-    local hasResource = resources:HasResource(42);
-    print(hasResource);
-    print(resources:HasResource(42));
-    print('GetResourceAmount function works?:')
-    local resourceAmount = resources:GetResourceAmount(42);
-    print(resourceAmount)
-    print(resources:GetResourceAmount(4))
-    -- UI context functions HasExportedResource, GetBonusResourcePerTurn. Check if these work outside of strategics.
-
+    if not resources then return end
+    local hasResource = resources:HasResource(12);
+    if hasResource > 1 then
+        local pUnit = pPlayer:GetUnits():FindID(unitID);
+        pUnit:GetExperience():SetPromotion(1)           -- choose relevant promotion index, currently scout
+    end
 end
 
 function GrantXP(playerId)
@@ -38,7 +29,7 @@ function GrantXP(playerId)
         if not sUnitType then return; end                       -- remove once table correct
         local fXP_gain = FreeXPUnits[sUnitType]
         if fXP_gain then
-            if fXP_gain == int(fXP_gain) then
+            if fXP_gain == math.floor(fXP_gain) then
                 -- if integer, simple add xp
                 unit:GetExperience():ChangeExperience(fXP_gain);
             else
