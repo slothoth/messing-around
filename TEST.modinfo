@@ -19,8 +19,12 @@
       </Properties>
       <File>main.sql</File>
     </UpdateDatabase>
+    <AddGameplayScripts id="LUA_gameplay">
+      <File>gameplay.lua</File>
+    </AddGameplayScripts>
   </InGameActions>
   <Files>
     <File>main.sql</File>
+    <File>gameplay.lua</File>
   </Files>
 </Mod>
