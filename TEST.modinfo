@@ -19,8 +19,16 @@
       </Properties>
       <File>main.sql</File>
     </UpdateDatabase>
+    <AddUserInterfaces id="AddUserInterfaces">
+      <Properties>
+        <Context>InGame</Context>
+      </Properties>
+      <File>Tester.xml</File>
+    </AddUserInterfaces>
   </InGameActions>
   <Files>
     <File>main.sql</File>
+    <File>Tester.lua</File>
+    <File>Tester.xml</File>
   </Files>
 </Mod>
