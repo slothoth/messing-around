@@ -13,14 +13,20 @@
     <Mod id="8424840C-92EF-4426-A9B4-B4E0CB818049" title="LOC_BABYLON_MOD_TITLE" />
   </Dependencies>
   <InGameActions>
-    <UpdateDatabase id="uhh">
-      <Properties>
-        <LoadOrder>50</LoadOrder>
+    <AddGameplayScripts id="NewAction">
+	  <File>Gameplay_Support.lua</File>
+    </AddGameplayScripts>
+    <AddUserInterfaces id="NewAction">
+	  <Properties>
+        <Context>InGame</Context>
       </Properties>
-      <File>main.sql</File>
-    </UpdateDatabase>
+	  <File>ExtraOperations.xml</File>
+      <File>ExtraOperations.lua</File>
+    </AddUserInterfaces>
   </InGameActions>
   <Files>
-    <File>main.sql</File>
+    <File>ExtraOperations.xml</File>
+    <File>ExtraOperations.lua</File>
+    <File>Gameplay_Support.lua</File>
   </Files>
 </Mod>
